@@ -1,18 +1,13 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import { createProduct, readProducts } from "./logic";
 
 const app = express();
 
 app.use(express.json()); 
 
-app.get("/", (req: Request, res: Response) => {
-    return res.send('Hello world!');
-})
+app.get("/", readProducts);
 
-app.post("/", (req: Request, res: Response) => {
-    console.log(req.headers);
-    console.log(req.body);
-    return res.status(201).json({ message: 'Created successfully.'});
-})
+app.post("/", createProduct);
 
 const PORT = 3000;
 
