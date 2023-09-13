@@ -1,14 +1,11 @@
 import express from "express";
-import { createProduct, readProducts } from "./logic";
-import { createProductValidation } from "./middlewares/createProductValidation";
+import { productRouter } from "./routes/products.routes";
 
 const app = express();
 
 app.use(express.json()); 
 
-app.get("/", readProducts);
-
-app.post("/", createProductValidation, createProduct);
+app.use("/products/", productRouter);
 
 const PORT = 3000;
 
